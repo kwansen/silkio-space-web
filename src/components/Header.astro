@@ -1,0 +1,71 @@
+---
+// Floating nav — transparent over hero, frosted white on scroll.
+const links = ["产品", "解决方案", "技术", "关于我们"];
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter] duration-300"
+>
+  <nav class="mx-auto flex h-14 max-w-[1383px] items-center justify-between px-6">
+    <a href="/" class="text-[17px] font-medium tracking-[0.35em] text-white uppercase" id="wordmark">
+      Silkio
+    </a>
+    <ul class="hidden items-center gap-2 md:flex">
+      {
+        links.map((label) => (
+          <li>
+            <a
+              href="#"
+              class="nav-item rounded-btn px-4 py-1 text-sm font-medium text-white hover:bg-black/10"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="hidden items-center gap-2 md:flex">
+      <a href="#" class="nav-item rounded-btn px-4 py-1 text-sm font-medium text-white hover:bg-black/10">
+        联系我们
+      </a>
+    </div>
+    <button id="menu-btn" class="md:hidden p-2" aria-label="菜单">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M0 1h20M0 7h20M0 13h20" />
+      </svg>
+    </button>
+  </nav>
+  <!-- Mobile drawer -->
+  <div id="drawer" class="hidden bg-white px-6 py-4 md:hidden">
+    {
+      links.map((label) => (
+        <a href="#" class="block py-2 text-sm font-medium text-carbon">
+          {label}
+        </a>
+      ))
+    }
+    <a href="#" class="block py-2 text-sm font-medium text-carbon">联系我们</a>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const wordmark = document.getElementById("wordmark")!;
+  const paint = () => {
+    const solid = window.scrollY > 24;
+    header.classList.toggle("bg-white/75", solid);
+    header.classList.toggle("backdrop-blur-md", solid);
+    wordmark.classList.toggle("text-white", !solid);
+    wordmark.classList.toggle("text-carbon", solid);
+    header.querySelectorAll<HTMLElement>(".nav-item").forEach((el) => {
+      el.classList.toggle("text-white", !solid);
+      el.classList.toggle("text-carbon", solid);
+    });
+  };
+  paint();
+  window.addEventListener("scroll", paint, { passive: true });
+  document.getElementById("menu-btn")?.addEventListener("click", () => {
+    document.getElementById("drawer")?.classList.toggle("hidden");
+  });
+</script>

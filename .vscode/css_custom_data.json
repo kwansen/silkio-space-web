@@ -1,0 +1,13 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    { "name": "@theme", "description": "Tailwind CSS v4: define design tokens (colors, fonts, spacing) that generate utility classes." },
+    { "name": "@plugin", "description": "Tailwind CSS v4: load a Tailwind plugin." },
+    { "name": "@source", "description": "Tailwind CSS v4: register additional content paths for class detection." },
+    { "name": "@utility", "description": "Tailwind CSS v4: define a custom utility." },
+    { "name": "@variant", "description": "Tailwind CSS v4: define a custom variant." },
+    { "name": "@custom-variant", "description": "Tailwind CSS v4: define a custom variant with selectors." },
+    { "name": "@apply", "description": "Tailwind CSS: apply existing utility classes inline." },
+    { "name": "@reference", "description": "Tailwind CSS v4: import theme context into isolated CSS (e.g. Vue SFC styles)." }
+  ]
+}

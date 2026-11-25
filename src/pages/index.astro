@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import HeroSection from "../components/HeroSection.astro";
+import Footer from "../components/Footer.astro";
+
+// 占位内容 — 图片与文案均为示例，待正式填充
+const img = (prompt: string, size = "landscape_16_9") =>
+  `https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
+---
+
+<Layout>
+  <Header />
+  <main>
+    <HeroSection
+      image={img(
+        "cinematic wide shot of a sleek futuristic tech product on polished concrete floor, hazy city skyline background, minimalist studio lighting, dark moody atmosphere, photorealistic",
+      )}
+      alt="Silkio Space 主视觉"
+      title="Silkio Space"
+      subtitle="产品副标题占位文案"
+      primary="立即体验"
+      secondary="了解更多"
+    />
+    <HeroSection
+      image={img(
+        "modern minimalist workspace interior at dusk, large glass windows, soft ambient light, wide angle architectural photography, photorealistic",
+      )}
+      alt="功能场景"
+      title="特性板块占位标题"
+      subtitle="一句话卖点占位文案"
+      lazy
+    />
+    <HeroSection
+      image={img(
+        "abstract dark technology background, subtle network light trails over deep blue-black gradient-free scene, cinematic, photorealistic",
+      )}
+      alt="技术场景"
+      title="解决方案占位标题"
+      subtitle="一句话卖点占位文案"
+      primary="查看方案"
+      secondary="联系我们"
+      lazy
+    />
+    <HeroSection
+      image={img(
+        "team of professionals collaborating in bright minimal office, candid wide shot, natural light, photorealistic",
+      )}
+      alt="团队场景"
+      title="关于我们占位标题"
+      subtitle="一句话卖点占位文案"
+      primary="加入我们"
+      secondary="了解更多"
+      lazy
+    />
+  </main>
+  <Footer />
+</Layout>

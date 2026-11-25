@@ -1,0 +1,44 @@
+---
+// Full-viewport hero/showcase section: one image, one message, at most two CTAs.
+// Text sits at top (dark imagery) — model → subtitle → buttons vertical rhythm.
+interface Props {
+  image: string;
+  alt: string;
+  title: string;
+  subtitle?: string;
+  primary?: string;
+  secondary?: string;
+  lazy?: boolean;
+}
+
+const { image, alt, title, subtitle, primary = "了解更多", secondary = "联系我们", lazy = false } = Astro.props;
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  <img
+    src={image}
+    alt={alt}
+    class="absolute inset-0 h-full w-full object-cover"
+    loading={lazy ? "lazy" : "eager"}
+  />
+  <div class="relative flex h-full flex-col items-center pt-28 text-center md:pt-32">
+    <h1 class="font-display text-[28px] font-medium text-white md:text-[40px] md:leading-[1.2]">
+      {title}
+    </h1>
+    {subtitle && <p class="mt-2 text-sm font-normal text-white">{subtitle}</p>}
+    <div class="mt-6 flex flex-col items-center gap-4 md:flex-row">
+      <a
+        href="#"
+        class="tds-transition flex h-10 w-48 items-center justify-center rounded-btn border-[3px] border-transparent bg-primary text-sm font-medium text-white hover:bg-[#3457b1]"
+      >
+        {primary}
+      </a>
+      <a
+        href="#"
+        class="tds-transition flex h-10 w-40 items-center justify-center rounded-btn border-[3px] border-transparent bg-white/90 text-sm font-medium text-graphite hover:bg-white"
+      >
+        {secondary}
+      </a>
+    </div>
+  </div>
+</section>
