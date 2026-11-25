@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
+.sa {
+  color: #3e6ae1;
+}
+
 @theme {
-  --color-primary: #3e6ae1; /* Electric Blue — only for CTAs */
+  --color-primary: var(--color-purple-400);
   --color-canvas: #ffffff;
   --color-ash: #f4f4f4;
   --color-carbon: #171a20;
@@ -10,10 +14,12 @@
   --color-fog: #8e8e8e;
   --color-hairline: #eeeeee;
 
-  --font-display: "Universal Sans Display", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Arial, sans-serif;
-  --font-text: "Universal Sans Text", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Arial, sans-serif;
+  --font-display:
+    "Universal Sans Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Arial, sans-serif;
+  --font-text:
+    "Universal Sans Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+    sans-serif;
 
   --radius-btn: 4px;
   --radius-card: 12px;
