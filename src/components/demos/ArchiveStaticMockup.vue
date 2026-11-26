@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const docs = ["《慢思考》读书笔记", "归档机制设计草案"];
+const docs = ["《思考，快与慢》读书笔记", "归档机制设计草案"];
 const archives = ["阅读内化", "产品设计", "工作流"];
 </script>
 

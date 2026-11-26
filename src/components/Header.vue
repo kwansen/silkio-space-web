@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import SilkioSpaceIcon from "../icons/SilkioSpace.vue";
 
 const links = ["产品", "解决方案", "技术", "关于我们"];
 const solid = ref(false);
@@ -26,8 +27,9 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
     >
       <a
         href="/"
-        class="text-[17px] font-medium tracking-[0.35em] text-carbon uppercase"
+        class="flex items-center gap-2.5 text-[17px] font-medium tracking-[0.35em] text-carbon uppercase"
       >
+        <SilkioSpaceIcon class="text-xl" />
         Silkio Space
       </a>
       <ul class="hidden items-center gap-2 md:flex">

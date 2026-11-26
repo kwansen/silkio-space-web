@@ -63,8 +63,8 @@ const docs: DemoDoc[] = [
   {
     id: "d",
     icon: DocIcon,
-    title: "《慢思考》读书笔记",
-    content: "大脑四层结构、中断的代价与深度工作",
+    title: "《思考，快与慢》读书笔记",
+    content: "系统1与系统2、锚定效应与认知偏差",
     viewedAt: ts(11, 19, 22, 30),
     updatedAt: ts(11, 18, 11, 11),
     createdAt: ts(11, 15, 8, 0),

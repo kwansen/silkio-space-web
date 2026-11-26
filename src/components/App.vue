@@ -13,6 +13,7 @@ import EditorStaticMockup from "./demos/EditorStaticMockup.vue";
 import SearchStaticMockup from "./demos/SearchStaticMockup.vue";
 import SortStaticMockup from "./demos/SortStaticMockup.vue";
 import ArchiveStaticMockup from "./demos/ArchiveStaticMockup.vue";
+import WindowsIcon from "../icons/Windows.vue";
 
 const features = [
   {
@@ -57,11 +58,15 @@ const features = [
     <Header />
     <main>
       <HeroSection
-        title="思之所至，刻之即成"
-        subtitle="思刻空间无需打开平台：快速创建、快速检索，先记录再归档，让心流不断线。"
-        primary="立即体验"
+        title="思刻空间"
+        subtitle="更省心的知识管理工具"
         secondary="查看功能"
-      />
+      >
+        <template #primary>
+          <WindowsIcon class="h-4 w-4" aria-hidden="true" />
+          下载 Windows 客户端
+        </template>
+      </HeroSection>
       <FeatureRows :features="features" />
       <CTASection />
     </main>

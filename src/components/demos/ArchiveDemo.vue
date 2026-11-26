@@ -39,7 +39,7 @@ const folders: Folder[] = [
 ];
 
 const docs: DemoDoc[] = [
-  { id: "a", icon: DocIcon, title: "《慢思考》读书笔记", folders: [0, 1] },
+  { id: "a", icon: DocIcon, title: "《思考，快与慢》读书笔记", folders: [0, 1] },
   { id: "b", icon: FlowchartIcon, title: "婚礼筹备流程", folders: [0, 2] },
   { id: "c", icon: MindmapIcon, title: "心理学常见效应盘点", folders: [1] },
   { id: "d", icon: DocIcon, title: "爬虫性能优化实战", folders: [1] },
