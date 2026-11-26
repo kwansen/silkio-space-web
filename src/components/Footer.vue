@@ -1,9 +1,36 @@
 <script setup lang="ts">
+// TODO: 替换为实际的仓库地址
+const githubUrl = "https://github.com/silkiospace/silkiospace";
+
 const groups = [
-  { title: "产品", links: ["产品概览", "功能特性", "定价", "更新日志"] },
-  { title: "解决方案", links: ["行业方案", "开发者", "合作伙伴"] },
-  { title: "支持", links: ["帮助中心", "文档", "状态页", "联系我们"] },
-  { title: "关于", links: ["公司介绍", "加入我们", "新闻", "法律条款"] },
+  {
+    title: "产品",
+    links: [
+      { label: "其他产品", href: "/products/" },
+      { label: "博客", href: "/blog/" },
+    ],
+  },
+  {
+    title: "支持",
+    links: [
+      { label: "联系我们", href: "/contact/" },
+      { label: "友情链接", href: "/links/" },
+    ],
+  },
+  {
+    title: "开源",
+    links: [
+      { label: "GitHub", href: githubUrl },
+      { label: "捐赠", href: "#" },
+    ],
+  },
+  {
+    title: "法律",
+    links: [
+      { label: "法律条款", href: "/terms/" },
+      { label: "隐私政策", href: "/privacy/" },
+    ],
+  },
 ];
 </script>
 
@@ -17,8 +44,8 @@ const groups = [
         <div v-for="g in groups" :key="g.title">
           <h3 class="text-sm font-medium text-carbon">{{ g.title }}</h3>
           <ul class="mt-3 space-y-2">
-            <li v-for="l in g.links" :key="l">
-              <a href="#" class="text-sm font-normal text-pewter hover:underline">{{ l }}</a>
+            <li v-for="l in g.links" :key="l.label">
+              <a :href="l.href" class="text-sm font-normal text-pewter hover:underline">{{ l.label }}</a>
             </li>
           </ul>
         </div>

@@ -57,3 +57,60 @@ body {
     border-color 0.33s var(--ease-tesla),
     box-shadow 0.33s var(--ease-tesla);
 }
+
+/* 博客文章正文排版 */
+.prose-silkio {
+  color: var(--color-graphite);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+.prose-silkio h2 {
+  margin: 2.25em 0 0.75em;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-carbon);
+}
+.prose-silkio h3 {
+  margin: 1.75em 0 0.5em;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--color-carbon);
+}
+.prose-silkio p {
+  margin: 1em 0;
+}
+.prose-silkio ol,
+.prose-silkio ul {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+.prose-silkio ol {
+  list-style: decimal;
+}
+.prose-silkio ul {
+  list-style: disc;
+}
+.prose-silkio li {
+  margin: 0.4em 0;
+}
+.prose-silkio a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-silkio strong {
+  color: var(--color-carbon);
+  font-weight: 600;
+}
+.prose-silkio blockquote {
+  margin: 1.25em 0;
+  border-left: 3px solid var(--color-hairline);
+  padding-left: 1em;
+  color: var(--color-pewter);
+}
+.prose-silkio code {
+  background: var(--color-ash);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+}

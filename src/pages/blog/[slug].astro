@@ -1,0 +1,36 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<PageLayout title={`${post.data.title} - Silkio Space`} description={post.data.excerpt}>
+  <fragment slot="title">{post.data.title}</fragment>
+  <fragment slot="intro">
+    <span>{post.data.author}</span>
+    <span class="mx-2 text-fog">·</span>
+    <time datetime={post.data.date.toISOString()}>
+      {post.data.date.toISOString().slice(0, 10)}
+    </time>
+  </fragment>
+
+  <article class="prose-silkio">
+    <Content />
+  </article>
+
+  <div class="mt-12 border-t border-hairline pt-6">
+    <a href="/blog/" class="tds-transition text-sm font-medium text-primary hover:underline">
+      ← 返回博客列表
+    </a>
+  </div>
+</PageLayout>

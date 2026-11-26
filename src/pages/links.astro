@@ -1,0 +1,32 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const links = [
+  { name: "示例站点 A", desc: "一位专注效率工具的独立开发者博客。", url: "#" },
+  { name: "示例站点 B", desc: "知识管理与卡片盒笔记法的中文社区。", url: "#" },
+  { name: "示例站点 C", desc: "设计与前端技术分享。", url: "#" },
+];
+---
+
+<PageLayout title="友情链接 - Silkio Space">
+  <fragment slot="title">友情链接</fragment>
+  <fragment slot="intro">
+    一些我们喜欢、也觉得值得推荐的地方。想交换链接？欢迎联系我们。
+  </fragment>
+
+  <ul class="grid gap-6 md:grid-cols-2">
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.url}
+            class="tds-transition block rounded-card border border-hairline bg-white p-6 hover:border-primary/40"
+          >
+            <h2 class="text-lg font-medium text-carbon">{l.name}</h2>
+            <p class="mt-2 text-sm leading-relaxed text-pewter">{l.desc}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</PageLayout>

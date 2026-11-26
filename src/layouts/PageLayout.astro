@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Silkio Space 官网" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <!-- 关键内联样式：首帧前就隐藏 body 滚动条，避免 CSS 注入前后滚动条出现/消失导致 fixed header 横移 -->
+    <style>
+      html,
+      body {
+        overflow-y: hidden;
+      }
+    </style>
+  </head>
+  <body class="overflow-y-hidden">
+    <div class="w-full h-screen overflow-y-auto overflow-x-hidden [scrollbar-gutter:stable]">
+      <Header client:load />
+      <main class="pt-14">
+        <section class="bg-canvas px-6 py-16">
+          <div class="mx-auto max-w-345.75 text-center">
+            <h1 class="font-display text-[32px] font-semibold leading-tight text-carbon md:text-[40px]"><slot name="title" /></h1>
+            <p class="mx-auto mt-4 max-w-xl text-base text-pewter"><slot name="intro" /></p>
+          </div>
+        </section>
+        <section class="px-6 py-16">
+          <div class="mx-auto max-w-3xl">
+            <slot />
+          </div>
+        </section>
+      </main>
+      <Footer client:load />
+    </div>
+  </body>
+</html>

@@ -11,8 +11,15 @@ import App from "../components/App.vue";
     <meta name="description" content="Silkio Space 官网" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Silkio Space</title>
+    <!-- 关键内联样式：首帧前就隐藏 body 滚动条，避免 CSS 注入前后滚动条出现/消失导致 fixed header 横移 -->
+    <style>
+      html,
+      body {
+        overflow-y: hidden;
+      }
+    </style>
   </head>
-  <body class="overflow-y-hidden">
+  <body >
     <App client:load />
   </body>
 </html>

@@ -54,7 +54,7 @@ const features = [
 </script>
 
 <template>
-  <div class="w-screen h-screen overflow-y-auto overflow-x-hidden">
+  <div class="w-full h-screen overflow-y-auto overflow-x-hidden [scrollbar-gutter:stable]">
     <Header />
     <main>
       <HeroSection

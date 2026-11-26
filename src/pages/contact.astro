@@ -1,0 +1,35 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const channels = [
+  { name: "邮箱", value: "hello@silkio.space", href: "mailto:hello@silkio.space" },
+  { name: "反馈建议", value: "feedback@silkio.space", href: "mailto:feedback@silkio.space" },
+];
+---
+
+<PageLayout title="联系我们 - Silkio Space">
+  <fragment slot="title">联系我们</fragment>
+  <fragment slot="intro">
+    有问题、建议，或者只是想说声你好？欢迎随时联系，我们会尽快回复。
+  </fragment>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {
+      channels.map((c) => (
+        <div class="rounded-card border border-hairline bg-white p-6">
+          <h2 class="text-sm font-medium text-carbon">{c.name}</h2>
+          <a
+            href={c.href}
+            class="tds-transition mt-2 block text-base text-primary hover:underline"
+          >
+            {c.value}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="mx-auto mt-8 max-w-3xl text-sm text-pewter">
+    通常我们会在 1–2 个工作日内回复邮件。产品使用问题也欢迎先查阅帮助中心与文档。
+  </p>
+</PageLayout>
