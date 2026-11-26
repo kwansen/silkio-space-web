@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // TODO: 替换为实际的仓库地址
-const githubUrl = "https://github.com/silkiospace/silkiospace";
+const githubUrl = "https://github.com/kwansen/silkio-space";
 
 const groups = [
   {
@@ -45,12 +45,18 @@ const groups = [
           <h3 class="text-sm font-medium text-carbon">{{ g.title }}</h3>
           <ul class="mt-3 space-y-2">
             <li v-for="l in g.links" :key="l.label">
-              <a :href="l.href" class="text-sm font-normal text-pewter hover:underline">{{ l.label }}</a>
+              <a
+                :href="l.href"
+                class="text-sm font-normal text-pewter hover:underline"
+                >{{ l.label }}</a
+              >
             </li>
           </ul>
         </div>
       </div>
-      <p class="mt-10 text-xs text-fog">© 2026 Silkio Space. All rights reserved.</p>
+      <p class="mt-10 text-xs text-fog">
+        © 2026 Silkio Space. All rights reserved.
+      </p>
     </div>
   </footer>
 </template>

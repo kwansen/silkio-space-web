@@ -1,9 +1,19 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Wechat from "../icons/Wechat.vue";
+import Mail from "../icons/Mail.vue";
 
 const channels = [
-  { name: "邮箱", value: "hello@silkio.space", href: "mailto:hello@silkio.space" },
-  { name: "反馈建议", value: "feedback@silkio.space", href: "mailto:feedback@silkio.space" },
+  {
+    name: "微信",
+    value: "kwanseninf",
+    icon: Wechat,
+  },
+  {
+    name: "邮箱",
+    value: "feedback@silkio.cn",
+    icon: Mail,
+  },
 ];
 ---
 
@@ -14,22 +24,40 @@ const channels = [
   </fragment>
 
   <div class="grid gap-6 md:grid-cols-2">
-    {
-      channels.map((c) => (
-        <div class="rounded-card border border-hairline bg-white p-6">
-          <h2 class="text-sm font-medium text-carbon">{c.name}</h2>
-          <a
-            href={c.href}
-            class="tds-transition mt-2 block text-base text-primary hover:underline"
-          >
-            {c.value}
-          </a>
-        </div>
-      ))
-    }
+    {channels.map((c) => (
+      <div class="rounded-card border border-hairline bg-white p-6">
+        {c.icon && (
+          <c.icon class="mb-3 text-2xl text-primary" aria-hidden="true" />
+        )}
+        <h2 class="text-sm font-medium text-carbon">{c.name}</h2>
+        <button
+          type="button"
+          data-copy={c.value}
+          class="tds-transition mt-2 block cursor-pointer text-base text-primary hover:underline"
+          title="点击复制"
+        >
+          {c.value}
+        </button>
+      </div>
+    ))}
   </div>
-
-  <p class="mx-auto mt-8 max-w-3xl text-sm text-pewter">
-    通常我们会在 1–2 个工作日内回复邮件。产品使用问题也欢迎先查阅帮助中心与文档。
-  </p>
 </PageLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.dataset.copy;
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.textContent = "已复制";
+        setTimeout(() => {
+          btn.textContent = original;
+        }, 1500);
+      } catch {
+        window.prompt("复制失败，请手动复制：", text);
+      }
+    });
+  });
+</script>

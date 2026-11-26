@@ -5,7 +5,7 @@ import GitHubIcon from "../icons/GitHub.vue";
 import WindowsIcon from "../icons/Windows.vue";
 
 // TODO: 替换为实际的仓库地址
-const githubUrl = "https://github.com/silkiospace/silkiospace";
+const githubUrl = "https://github.com/kwansen/silkio-space";
 
 const links = [
   { label: "产品", href: "/products/" },
