@@ -7,6 +7,10 @@ import { computed, onMounted, ref } from "vue";
 import DocIcon from "../../icons/Doc.vue";
 import FlowchartIcon from "../../icons/Flowchart.vue";
 import MindmapIcon from "../../icons/Mindmap.vue";
+import { useDemoScale } from "../../composables/useDemoScale";
+
+const rootEl = ref<HTMLElement | null>(null);
+const demoScale = useDemoScale(rootEl);
 
 type SortKey = "viewedAt" | "updatedAt" | "createdAt" | "wordCount";
 
@@ -133,10 +137,12 @@ onMounted(async () => {
 
 <template>
   <div
-    class="grid min-h-120 place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash py-10 select-none"
+    ref="rootEl"
+    class="demo-stage grid place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash select-none"
+    :style="{ '--demo-scale': demoScale }"
   >
-    <!-- 统一槽位 w-180 h-96：卡片 720×384 正好填满 -->
-    <div class="relative w-180 h-96">
+    <!-- 统一槽位：800×464 画板（zoom 缩放单元），卡片 720 宽居中，四周各 40 内边距 -->
+    <div class="demo-slot relative w-200 h-116 p-10">
       <div
         class="overflow-hidden rounded-2xl bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)]"
       >

@@ -6,6 +6,10 @@ import { onMounted, ref, type Component } from "vue";
 import DocIcon from "../../icons/Doc.vue";
 import FlowchartIcon from "../../icons/Flowchart.vue";
 import MindmapIcon from "../../icons/Mindmap.vue";
+import { useDemoScale } from "../../composables/useDemoScale";
+
+const rootEl = ref<HTMLElement | null>(null);
+const demoScale = useDemoScale(rootEl);
 
 const query = ref("");
 const activeIndex = ref(0);
@@ -107,10 +111,12 @@ onMounted(async () => {
 
 <template>
   <div
-    class="grid min-h-120 place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash py-10 select-none"
+    ref="rootEl"
+    class="demo-stage grid place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash select-none"
+    :style="{ '--demo-scale': demoScale }"
   >
-    <!-- 统一槽位 w-180 h-96：卡片顶部对齐（与真实搜索窗一致，搜索框靠顶） -->
-    <div class="relative w-180 h-96 flex items-start">
+    <!-- 统一槽位：800×464 画板（zoom 缩放单元），搜索卡片 720 宽靠顶，四周各 40 内边距 -->
+    <div class="demo-slot relative w-200 h-116 p-10 flex items-start">
       <!-- Alt+S 快捷键演示：大键帽，垂直水平居中，先按键再浮现搜索框 -->
       <Transition
         enter-active-class="transition-[opacity,transform] duration-250 ease-out"

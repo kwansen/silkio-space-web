@@ -8,6 +8,10 @@ import ArchiveIcon from "../../icons/Archive.vue";
 import DocIcon from "../../icons/Doc.vue";
 import FlowchartIcon from "../../icons/Flowchart.vue";
 import MindmapIcon from "../../icons/Mindmap.vue";
+import { useDemoScale } from "../../composables/useDemoScale";
+
+const rootEl = ref<HTMLElement | null>(null);
+const demoScale = useDemoScale(rootEl);
 
 // 卡片内部几何（w-180=720px, h-96=384px，px-4 py-6）
 // 左列归档：x 16~176，3 个 h-12 均分 justify-between，中心 y = 48/192/336
@@ -81,10 +85,12 @@ onMounted(async () => {
 
 <template>
   <div
-    class="grid min-h-120 place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash py-10 select-none"
+    ref="rootEl"
+    class="demo-stage grid place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash select-none"
+    :style="{ '--demo-scale': demoScale }"
   >
-    <!-- 统一槽位 w-180 h-96：卡片 720×384 正好填满 -->
-    <div class="relative w-180 h-96">
+    <!-- 统一槽位：800×464 画板（zoom 缩放单元），卡片 720×384 居中，四周各 40 内边距 -->
+    <div class="demo-slot relative w-200 h-116 p-10">
       <div
         class="w-full h-full overflow-hidden rounded-2xl bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)]"
       >

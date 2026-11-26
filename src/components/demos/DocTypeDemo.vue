@@ -7,6 +7,10 @@ import { onMounted, ref, type Component } from "vue";
 import DocIcon from "../../icons/Doc.vue";
 import MindmapIcon from "../../icons/Mindmap.vue";
 import FlowchartIcon from "../../icons/Flowchart.vue";
+import { useDemoScale } from "../../composables/useDemoScale";
+
+const rootEl = ref<HTMLElement | null>(null);
+const demoScale = useDemoScale(rootEl);
 
 // 场景轮播：0 富文本 → 1 思维导图 → 2 流程图
 const phase = ref(0);
@@ -78,15 +82,17 @@ onMounted(async () => {
 
 <template>
   <div
-    class="grid min-h-120 place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash py-10 select-none"
+    ref="rootEl"
+    class="demo-stage grid place-items-center rounded-card bg-linear-to-br from-ash via-canvas to-ash select-none"
+    :style="{ '--demo-scale': demoScale }"
   >
-    <!-- 统一槽位 w-180 h-96：大卡片居中（600×320） -->
-    <div class="relative w-180 h-96 grid place-items-center">
+    <!-- 统一槽位：800×464 画板（zoom 缩放单元），卡片 720×384 填满内容区，四周各 40 内边距 -->
+    <div class="demo-slot relative w-200 h-116 p-10">
       <div
-        class="w-150 h-80 overflow-hidden rounded-xl bg-white shadow-[0_4px_24px_rgba(0,0,0,0.14)] ring-1 ring-black/5"
+        class="w-full h-full overflow-hidden rounded-2xl bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)]"
       >
-        <!-- 场景区：固定 256px 高，避免切换时布局跳动 -->
-        <div class="relative h-64">
+        <!-- 场景区：固定 320px 高，避免切换时布局跳动 -->
+        <div class="relative h-80">
           <!-- 场景 1：富文本 — 占位条逐段浮现，带输入光标 -->
           <div v-if="phase === 0" class="absolute inset-0 p-8">
             <div class="flex items-center gap-2">
@@ -119,7 +125,7 @@ onMounted(async () => {
 
           <!-- 场景 2：思维导图 — 中心节点 → 分支沿贝塞尔曲线生长 -->
           <div v-if="phase === 1" class="absolute inset-0 grid place-items-center">
-            <svg viewBox="0 0 280 140" class="h-56 mx-auto">
+            <svg viewBox="0 0 280 140" class="h-64 mx-auto">
               <!-- 分支（连线 + 节点同步浮现）：cy 为节点中心 -->
               <g
                 v-for="(cy, i) in [24, 70, 116]"
@@ -161,7 +167,7 @@ onMounted(async () => {
 
           <!-- 场景 3：流程图 — 节点与箭头逐段绘制，末节点紫色收尾 -->
           <div v-if="phase === 2" class="absolute inset-0 grid place-items-center">
-            <svg viewBox="0 0 280 140" class="h-56 mx-auto">
+            <svg viewBox="0 0 280 140" class="h-64 mx-auto">
               <g
                 v-for="(node, i) in [16, 84, 152, 220]"
                 :key="node"

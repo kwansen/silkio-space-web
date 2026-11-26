@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-.sa {
-  color: #3e6ae1;
-}
-
 @theme {
   --color-primary: var(--color-purple-400);
   --color-canvas: #ffffff;
@@ -29,6 +25,21 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* 交互演示区：绘制板固定 720×384，随外层背景板宽度连续等比缩放。
+   --demo-scale 由 useDemoScale() 经 ResizeObserver 实时写入。
+   用 zoom 而非 transform:scale——zoom 会同步缩小布局盒，
+   外层 grid 的居中/顶部对齐始终基于实际可见尺寸动态计算，
+   无需 transform-origin 与 margin 补偿 */
+.demo-stage {
+  max-width: 100%;
+  overflow-x: clip;
+  /* 背景板随宽度等比缩放：设计尺寸 800×464（板 384 + 四周各 40 内边距） */
+  aspect-ratio: 800 / 464;
+}
+.demo-slot {
+  zoom: var(--demo-scale, 1);
 }
 
 body {
