@@ -21,7 +21,6 @@ const groups = [
     title: "开源",
     links: [
       { label: "GitHub", href: githubUrl },
-      { label: "捐赠", href: "#" },
     ],
   },
   {

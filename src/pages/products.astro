@@ -1,44 +1,41 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import ExternalLink from "../icons/ExternalLink.vue";
 
 const products = [
   {
-    name: "思刻笔记",
-    desc: "轻量级移动端速记应用，灵感来时即刻捕捉，与思刻空间无缝同步。",
-    status: "开发中",
+    name: "思刻思维导图",
+    desc: "免费在线思维导图，无需登录即可使用，支持 AI 辅助生成。",
+    href: "https://mindmap.silkio.cn/",
   },
   {
-    name: "思刻剪藏",
-    desc: "浏览器扩展，一键剪藏网页内容到思刻空间，自动保留正文与来源。",
-    status: "规划中",
-  },
-  {
-    name: "思刻命令行",
-    desc: "面向开发者的 CLI 工具，在终端中快速创建与检索文档。",
-    status: "规划中",
+    name: "思刻流程图",
+    desc: "免费在线流程图，无需登录即可使用，支持 AI 辅助绘制。",
+    href: "https://flowchart.silkio.cn/",
   },
 ];
 ---
 
 <PageLayout title="其他产品 - Silkio Space">
   <fragment slot="title">其他产品</fragment>
-  <fragment slot="intro">
-    思刻空间之外，我们也在打磨一些小而美的工具，围绕同一个目标：让想法更快落地。
-  </fragment>
+  <fragment slot="intro">思刻空间之外，我们也有以下产品。</fragment>
 
-  <div class="grid gap-6 md:grid-cols-3">
-    {
-      products.map((p) => (
-        <div class="rounded-card border border-hairline bg-white p-6">
-          <div class="flex items-center justify-between">
-            <h2 class="text-lg font-medium text-carbon">{p.name}</h2>
-            <span class="rounded-btn bg-ash px-2 py-1 text-xs text-pewter">
-              {p.status}
-            </span>
+  <ul class="mt-2 border-t border-neutral-100">
+    {products.map((p) => (
+      <li class="border-b border-neutral-100 hover:bg-gray-50 px-4">
+        <a
+          href={p.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid h-16 grid-cols-[1fr_auto] items-center gap-4 cursor-pointer"
+        >
+          <div class="min-w-0 flex flex-col justify-center py-2">
+            <div class="truncate text-sm font-medium text-carbon">{p.name}</div>
+            <div class="truncate text-xs text-neutral-400">{p.desc}</div>
           </div>
-          <p class="mt-3 text-sm leading-relaxed text-pewter">{p.desc}</p>
-        </div>
-      ))
-    }
-  </div>
+          <ExternalLink class="size-4 text-base text-neutral-400" />
+        </a>
+      </li>
+    ))}
+  </ul>
 </PageLayout>

@@ -45,32 +45,13 @@ const props = withDefaults(defineProps<Props>(), {
         </div>
       </div>
 
-      <div class="relative mx-auto mt-14 max-w-5xl">
-        <div
-          class="absolute -inset-8 rounded-[40px] bg-linear-to-br from-primary/15 via-transparent to-primary/5 blur-3xl"
-        ></div>
-        <div
-          class="relative overflow-hidden rounded-card border border-hairline bg-white shadow-[0_32px_80px_-24px_rgba(23,26,32,0.28)]"
-        >
-          <div
-            class="flex items-center gap-2 border-b border-hairline bg-ash px-4 py-2.5"
-          >
-            <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-[#febc2e]"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
-            <div
-              class="ml-3 hidden h-5 flex-1 items-center rounded bg-white px-3 text-[10px] text-fog sm:flex"
-            >
-              app.silkiospace.com
-            </div>
-          </div>
-          <img
-            src="/images/hero/app-overview.png"
-            alt="思刻空间产品界面总览"
-            class="w-full bg-canvas"
-            fetchpriority="high"
-          />
-        </div>
+      <div class="relative mx-auto mt-14 max-w-5xl rounded-2xl overflow-hidden">
+        <img
+          src="/images/hero/app-overview.png"
+          alt="思刻空间产品界面总览"
+          class="w-full bg-canvas"
+          fetchpriority="high"
+        />
       </div>
     </div>
   </section>

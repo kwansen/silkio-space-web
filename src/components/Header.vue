@@ -8,10 +8,9 @@ import WindowsIcon from "../icons/Windows.vue";
 const githubUrl = "https://github.com/kwansen/silkio-space";
 
 const links = [
-  { label: "产品", href: "/products/" },
   { label: "博客", href: "/blog/" },
-  { label: "友情链接", href: "/links/" },
   { label: "联系我们", href: "/contact/" },
+  { label: "其他产品", href: "/products/" },
 ];
 const solid = ref(false);
 const drawerOpen = ref(false);
@@ -105,7 +104,6 @@ onUnmounted(() =>
       >
         {{ l.label }}
       </a>
-      <a href="#" class="block py-2 text-sm font-medium text-carbon">捐赠</a>
       <a href="#" class="block py-2 text-sm font-medium text-carbon">下载</a>
     </div>
   </header>
