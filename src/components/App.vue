@@ -1,0 +1,55 @@
+<script setup lang="ts">
+import Header from "./Header.vue";
+import HeroSection from "./HeroSection.vue";
+import FeatureRows from "./FeatureRows.vue";
+import CTASection from "./CTASection.vue";
+import Footer from "./Footer.vue";
+
+const features = [
+  {
+    title: "快速创建，保持心流",
+    desc: "无需打开平台，随时随地一键记录。先创建，无需关心放在什么文件夹，灵感来时即刻捕捉，不打断思路。",
+    link: "了解更多",
+    visual: "capture",
+  },
+  {
+    title: "富文本 · 流程图 · 思维导图",
+    desc: "支持富文本、流程图与思维导图，数据无需分散到多个程序，一个空间承载所有想法。",
+    link: "了解更多",
+    visual: "editor",
+  },
+  {
+    title: "快速检索，即刻找到",
+    desc: "无需打开平台，快速检索一切内容。想到什么，搜到什么，信息永不迷失。",
+    link: "了解更多",
+    visual: "search",
+  },
+  {
+    title: "简洁的排序视图",
+    desc: "文档永远是主体，点击什么排序就显示什么关键信息——按创建时间排序，就只显示创建时间，视图清爽不杂乱。",
+    link: "了解更多",
+    visual: "sort",
+  },
+  {
+    title: "没有文件夹，归档即导航",
+    desc: "抛弃层层文件夹，文档与归档之间采用多对多关系。用到什么，归入什么——归档就像你亲手搭建的导航，找内容不再纠结该放哪。",
+    link: "了解更多",
+    visual: "archive",
+  },
+] as const;
+</script>
+
+<template>
+  <Header />
+  <main>
+    <HeroSection
+      title="思之所至，刻之即成"
+      subtitle="思刻空间无需打开平台：快速创建、快速检索，先记录再归档，让心流不断线。"
+      primary="立即体验"
+      secondary="查看功能"
+    />
+    <FeatureRows :features="features" />
+    <CTASection />
+  </main>
+  <Footer />
+</template>

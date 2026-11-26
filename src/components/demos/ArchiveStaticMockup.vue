@@ -1,0 +1,39 @@
+<script setup lang="ts">
+const docs = ["《慢思考》读书笔记", "归档机制设计草案"];
+const archives = ["阅读内化", "产品设计", "工作流"];
+</script>
+
+<template>
+  <div class="rounded-xl border border-hairline bg-white p-5 shadow-sm">
+    <div class="flex flex-col gap-3">
+      <div
+        v-for="t in docs"
+        :key="t"
+        class="flex items-center gap-3 rounded-xl border border-hairline bg-canvas px-4 py-3"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5a6070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+          <path d="M14 3v6h6" />
+        </svg>
+        <span class="text-xs text-carbon">{{ t }}</span>
+      </div>
+    </div>
+    <svg viewBox="0 0 320 60" class="my-1 w-full">
+      <path d="M80 0 C 80 30, 30 25, 30 58" fill="none" stroke="#c8ccd4" stroke-width="1.5" />
+      <path d="M80 0 C 80 30, 130 25, 130 58" fill="none" stroke="#c8ccd4" stroke-width="1.5" />
+      <path d="M240 0 C 240 30, 130 25, 130 58" fill="none" stroke="#c8ccd4" stroke-width="1.5" />
+      <path d="M240 0 C 240 30, 290 25, 290 58" fill="none" stroke="#c8ccd4" stroke-width="1.5" />
+    </svg>
+    <div class="flex flex-wrap gap-2">
+      <span
+        v-for="(a, j) in archives"
+        :key="a"
+        class="rounded-full px-3 py-1.5 text-[10px]"
+        :class="j === 1 ? 'bg-primary text-white' : 'border border-hairline bg-canvas text-carbon'"
+      >
+        {{ a }}
+      </span>
+    </div>
+    <p class="mt-4 text-center text-[10px] text-fog">一个文档 · 多个归档 · 没有文件夹</p>
+  </div>
+</template>
