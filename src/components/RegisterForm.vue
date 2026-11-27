@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const API_ROOT = (
-  import.meta.env.PUBLIC_SYNC_API_BASE_URL || "http://localhost:8787"
-)
+const fallbackApiRoot =
+  typeof window === "undefined"
+    ? "https://space.silkio.cn"
+    : import.meta.env.DEV
+      ? "http://localhost:8787"
+      : window.location.origin;
+
+const API_ROOT = (import.meta.env.PUBLIC_SYNC_API_BASE_URL || fallbackApiRoot)
   .replace(/\/+$/, "")
   .replace(/\/api$/, "");
 const apiUrl = (path: string) => `${API_ROOT}/api${path}`;

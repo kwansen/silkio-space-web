@@ -41,7 +41,10 @@ function buildUpstreamUrl(request, env) {
     env && typeof env.CLOUDBASE_API_ORIGIN === "string"
       ? env.CLOUDBASE_API_ORIGIN.trim()
       : "";
-  const origin = (configuredOrigin || DEFAULT_UPSTREAM_ORIGIN).replace(/\/+$/, "");
+  const origin = (configuredOrigin || DEFAULT_UPSTREAM_ORIGIN).replace(
+    /\/+$/,
+    "",
+  );
   const incoming = new URL(request.url);
   return new URL(`${incoming.pathname}${incoming.search}`, origin);
 }
