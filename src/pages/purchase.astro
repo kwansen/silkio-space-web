@@ -1,0 +1,16 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PurchaseForm from "../components/PurchaseForm.vue";
+---
+
+<PageLayout
+  title="购买同步权限 - Silkio Space"
+  description="使用微信支付开通 Silkio Space 云同步权限。"
+>
+  <fragment slot="title">购买同步权限</fragment>
+  <fragment slot="intro">
+    支付成功后会自动开通当前账号的云同步权限，无需手动配置。
+  </fragment>
+
+  <PurchaseForm client:load />
+</PageLayout>
