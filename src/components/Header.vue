@@ -11,6 +11,7 @@ const links = [
   { label: "博客", href: "/blog/" },
   { label: "联系我们", href: "/contact/" },
   { label: "其他产品", href: "/products/" },
+  { label: "定价", href: "/pricing/" },
   { label: "购买同步", href: "/purchase/" },
   { label: "注册", href: "/register/" },
 ];

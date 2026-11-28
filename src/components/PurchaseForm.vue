@@ -191,6 +191,8 @@ function logout() {
 
 onMounted(() => {
   token.value = localStorage.getItem(TOKEN_KEY) || "";
+  const requested = new URLSearchParams(window.location.search).get("plan");
+  if (requested) selectedPlan.value = requested;
   loadPlans();
 });
 
@@ -230,6 +232,8 @@ onUnmounted(stopPolling);
       </button>
       <p class="text-sm text-pewter">
         还没有账号？<a href="/register/" class="text-primary hover:underline">先注册</a>
+        <span class="mx-2">·</span>
+        <a href="/pricing/" class="text-primary hover:underline">查看完整定价</a>
       </p>
     </div>
 

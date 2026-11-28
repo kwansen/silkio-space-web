@@ -1,0 +1,202 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+// 与后端 pay/config.js 默认套餐保持一致；页面加载后会尝试从 /api/pay/plans 刷新真实价格
+const defaultPlans = [
+  {
+    id: "month",
+    label: "月度同步权限",
+    amountYuan: 9.9,
+    durationDays: 30,
+    featured: false,
+    features: [
+      "30 天全功能云同步",
+      "多设备间笔记实时同步",
+      "支付后立即开通，无需配置",
+      "到期后本地数据不受影响",
+    ],
+  },
+  {
+    id: "year",
+    label: "年度同步权限",
+    amountYuan: 99,
+    durationDays: 365,
+    featured: true,
+    features: [
+      "365 天全功能云同步",
+      "多设备间笔记实时同步",
+      "折合约 ¥0.27/天，比月付省 17%",
+      "到期后本地数据不受影响",
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: "购买后权限如何生效？",
+    a: "支付成功后云同步权限会自动绑定到当前登录的 Silkio Space 账号，回到桌面客户端即可使用，无需任何手动配置。",
+  },
+  {
+    q: "支持哪些支付方式？",
+    a: "目前支持微信扫码支付。下单后会生成支付二维码，支付完成后页面自动确认并开通权限。",
+  },
+  {
+    q: "套餐到期后我的数据会丢失吗？",
+    a: "不会。所有笔记数据始终保存在本地设备上，同步权限到期只影响云同步，本地数据完好无损，续费后即可继续同步。",
+  },
+  {
+    q: "可以同时购买多个套餐吗？",
+    a: "重复购买时长会自动累加。例如先买月付再买年付，权限有效期会在原有到期时间上顺延。",
+  },
+];
+---
+
+<PageLayout
+  title="定价 - Silkio Space"
+  description="Silkio Space 云同步权限定价：月付 ¥9.90，年付 ¥99。微信扫码支付，支付后立即开通。"
+>
+  <fragment slot="title">简单透明的定价</fragment>
+  <fragment slot="intro">
+    基础功能永久免费，只需为云同步付费。按需选择月付或年付，随时购买，随时续费。
+  </fragment>
+
+  <!-- 套餐卡片 -->
+  <div class="grid gap-6 sm:grid-cols-2" id="pricing-plans">
+    {
+      defaultPlans.map((plan) => (
+        <div
+          class="tds-transition relative flex flex-col rounded-card border p-8"
+          class:list={plan.featured ? "border-primary shadow-[0_8px_30px_rgba(124,58,237,0.08)]" : "border-hairline"}
+          data-plan-card={plan.id}
+        >
+          {plan.featured && (
+            <span class="absolute -top-3 left-8 rounded-btn bg-primary px-3 py-1 text-xs font-medium text-white">
+              更划算
+            </span>
+          )}
+          <h2 class="font-display text-lg font-medium text-carbon">{plan.label}</h2>
+          <p class="mt-5 flex items-baseline gap-1">
+            <span class="font-display text-[40px] font-semibold leading-none text-carbon">
+              ¥{plan.amountYuan.toFixed(2).replace(/\.00$/, "")}
+            </span>
+            <span class="text-sm text-fog">/ {plan.durationDays} 天</span>
+          </p>
+          <p class="mt-2 text-xs text-fog" data-plan-perday={plan.id}>
+            折合 ¥{(plan.amountYuan / plan.durationDays).toFixed(2)} / 天
+          </p>
+          <ul class="mt-7 flex flex-col gap-3 border-t border-hairline pt-7">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-2.5 text-sm text-graphite">
+                <svg
+                  class="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.2 7.3a1 1 0 0 1-1.42.004L3.29 9.24a1 1 0 1 1 1.42-1.408l2.086 2.104 6.494-6.58a1 1 0 0 1 1.414-.065Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={`/purchase/?plan=${plan.id}`}
+            class:list={[
+              "tds-transition mt-8 flex h-11 items-center justify-center rounded-btn text-sm font-medium",
+              plan.featured
+                ? "bg-primary text-white hover:bg-[#3457b1]"
+                : "border border-carbon text-carbon hover:bg-carbon hover:text-white",
+            ]}
+          >
+            立即购买
+          </a>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="mt-6 text-center text-xs text-fog">
+    价格支持微信扫码支付 · 支付成功后自动开通 · 权益绑定账号，多设备通用
+  </p>
+
+  <!-- 常见问题 -->
+  <div class="mt-20">
+    <h2 class="text-center font-display text-2xl font-semibold text-carbon">常见问题</h2>
+    <div class="mt-8 flex flex-col gap-4">
+      {
+        faqs.map((faq) => (
+          <details class="group rounded-card border border-hairline px-6 py-4 open:border-hairline">
+            <summary class="cursor-pointer list-none text-sm font-medium text-carbon marker:hidden [&::-webkit-details-marker]:hidden">
+              <span class="flex items-center justify-between gap-4">
+                {faq.q}
+                <svg
+                  class="tds-transition h-4 w-4 shrink-0 text-fog group-open:rotate-180"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-pewter">{faq.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- 底部 CTA -->
+  <div class="mt-20 rounded-card bg-ash px-8 py-12 text-center">
+    <h2 class="font-display text-2xl font-semibold text-carbon">准备好让笔记随处可及了吗</h2>
+    <p class="mx-auto mt-3 max-w-md text-sm text-pewter">
+      购买云同步权限后，你的每一次思考都会在所有设备上即刻留存。
+    </p>
+    <a
+      href="/purchase/"
+      class="tds-transition mx-auto mt-8 flex h-11 w-48 items-center justify-center rounded-btn bg-primary text-sm font-medium text-white hover:bg-[#3457b1]"
+    >
+      购买同步权限
+    </a>
+  </div>
+</PageLayout>
+
+<!-- 客户端渐进增强：若后端可访问，用真实套餐数据覆盖静态价格 -->
+<script>
+  const API_ROOT = (import.meta.env.PUBLIC_SYNC_API_BASE_URL || window.location.origin)
+    .replace(/\/+$/, "")
+    .replace(/\/api$/, "");
+
+  fetch(`${API_ROOT}/api/pay/plans`)
+    .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+    .then((data) => {
+      const plans = Array.isArray(data.plans) ? data.plans : [];
+      for (const plan of plans) {
+        const priceEl = document.querySelector(`[data-plan-card="${plan.id}"] .text-\\[40px\\]`);
+        if (priceEl && typeof plan.amountYuan === "number") {
+          priceEl.textContent = `¥${plan.amountYuan.toFixed(2).replace(/\.00$/, "")}`;
+        }
+        const perDayEl = document.querySelector(`[data-plan-perday="${plan.id}"]`);
+        if (perDayEl && typeof plan.amountYuan === "number" && plan.durationDays > 0) {
+          perDayEl.textContent = `折合 ¥${(plan.amountYuan / plan.durationDays).toFixed(2)} / 天`;
+        }
+        const buyBtn = document.querySelector(`a[href="/purchase/?plan=${plan.id}"]`);
+        if (!buyBtn) continue;
+        buyBtn.setAttribute(
+          "href",
+          `/purchase/?plan=${encodeURIComponent(plan.id)}`,
+        );
+      }
+    })
+    .catch(() => {
+      /* 后端不可达时保留静态默认价格 */
+    });
+</script>
